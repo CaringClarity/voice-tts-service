@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
     return res.status(200).json({ url: audioUrl });
 
   } catch (err) {
-    console.error('TTS Error:', err.message);
-    return res.status(500).json({ error: 'Internal server error' });
+    console.error('TTS Error:', err);
+    return res.status(500).json({ error: 'Internal server error', detail: err.message });
   }
 };
