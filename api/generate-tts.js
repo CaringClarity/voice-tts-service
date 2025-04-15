@@ -29,18 +29,17 @@ module.exports = async (req, res) => {
     const s3 = new AWS.S3({
       region: process.env.AWS_REGION,
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
     });
 
     await s3.putObject({
-      Bucket: process.env.S3_BUCKET_NAME,
+      Bucket: 'intake.files',
       Key: filename,
       Body: audioBuffer,
-      ContentType: 'audio/mpeg',
-      ACL: 'public-read'
+      ContentType: 'audio/mpeg'
     }).promise();
 
-    const audioUrl = `https://${process.env.S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${filename}`;
+    const audioUrl = `https://intake.files.s3.${process.env.AWS_REGION}.amazonaws.com/${filename}`;
     return res.status(200).json({ url: audioUrl });
 
   } catch (err) {
