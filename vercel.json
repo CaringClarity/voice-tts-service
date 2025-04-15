@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "builds": [
-    { "src": "api/generate-tts.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/api/generate-tts", "dest": "api/generate-tts.js" }
-  ]
-}
